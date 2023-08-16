@@ -1,0 +1,3 @@
+[submodule "Dumpers/Board/MiniSTM32H7xx"]
+	path = Dumpers/Board/MiniSTM32H7xx
+	url = https://github.com/WeActStudio/MiniSTM32H7xx
