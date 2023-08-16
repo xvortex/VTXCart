@@ -1,0 +1,28 @@
+Each folder has a file called FPGA which contains 2 or 3 digits, each of them represents 
+a specific configuration for Bankswitching/audio mode:
+
+1st digit indicates bankswitching mode:
+---------------------------------------
+0 = no bankswitching
+1 = standard bankswitching
+2 = neo-pvc bankswitching (F9 & F8)
+3 = neo-sma KOF99 bankswitching
+4 = neo-sma Garou "KF" version bankswitching
+5 = neo-sma Garou "KE" version bankswitching
+6 = neo-sma Metal Slug 3 bankswitching
+7 = neo-sma KOF2000 bankswitching
+
+2nd digit indicates graphics mode:
+----------------------------------
+0 = CROM full address (64 Mb)
+1 = CROM zero 1 MSB   (32 Mb)
+2 = CROM zero 2 MSBs  (16 Mb)
+3 = CROM zero 3 MSBs   (8 Mb)
+4 = CROM zero 4 MSBs   (4 Mb)
+5 = NEO-CMC SROM bankswitching (42 version)
+6 = NEO-CMC SROM bankswitching (50 version)
+
+3rd digit indicates audio mode:
+-------------------------------
+0 = VROM+PCM mode
+1 = VROMA/VROMB mode
