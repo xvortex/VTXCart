@@ -8,70 +8,63 @@
 // chip: 1, 2, 3, 4
 // half: 1, 2
 
-#ifdef DE_SCRAMBLE_ADDR
-static uint32_t cv_desc_address(uint32_t addr) // china pinout descramble
+static uint32_t cv_toss_address(uint32_t addr) // china pinout de/scramble
 {
-  uint32_t address = 0;
+  uint32_t address;
 
-  address = addr & 0xFFFFFFF0;
-  if (addr & BIT0) address |= BIT3;
-  if (addr & BIT1) address |= BIT2;
-  if (addr & BIT2) address |= BIT1;
-  if (addr & BIT3) address |= BIT0;
+  if (cur_chip == CHIP_C) { // only for C-ROM
+    address = addr & 0xFFFFFFF0;
+    if (addr & BIT0) address |= BIT3;
+    if (addr & BIT1) address |= BIT2;
+    if (addr & BIT2) address |= BIT1;
+    if (addr & BIT3) address |= BIT0;
+  } else {
+    address = addr;
+  }
 
   return address;
 }
-
-static uint32_t cv_scr_address(uint32_t addr) // china pinout scramble
-{
-  uint32_t address = 0;
-
-  address = addr & 0xFFFFFFF0;
-  if (addr & BIT0) address |= BIT3;
-  if (addr & BIT1) address |= BIT2;
-  if (addr & BIT2) address |= BIT1;
-  if (addr & BIT3) address |= BIT0;
-
-  return address;
-}
-#endif
 
 static uint32_t cv_desc_data(uint32_t dat) // china pinout descramble
 {
   uint32_t data = 0;
 
-  if (dat & BIT0)  data |= BIT12;
-  if (dat & BIT1)  data |= BIT9;
-  if (dat & BIT2)  data |= BIT8;
-  if (dat & BIT3)  data |= BIT2;
-  if (dat & BIT4)  data |= BIT14;
-  if (dat & BIT5)  data |= BIT0;
-  if (dat & BIT6)  data |= BIT15;
-  if (dat & BIT7)  data |= BIT4;
-  if (dat & BIT8)  data |= BIT1;
-  if (dat & BIT9)  data |= BIT5;
-  if (dat & BIT10) data |= BIT13;
-  if (dat & BIT11) data |= BIT3;
-  if (dat & BIT12) data |= BIT7;
-  if (dat & BIT13) data |= BIT6;
-  if (dat & BIT14) data |= BIT11;
-  if (dat & BIT15) data |= BIT10;
-  if (dat & BIT16) data |= BIT28;
-  if (dat & BIT17) data |= BIT25;
-  if (dat & BIT18) data |= BIT24;
-  if (dat & BIT19) data |= BIT18;
-  if (dat & BIT20) data |= BIT30;
-  if (dat & BIT21) data |= BIT16;
-  if (dat & BIT22) data |= BIT31;
-  if (dat & BIT23) data |= BIT20;
-  if (dat & BIT24) data |= BIT17;
-  if (dat & BIT25) data |= BIT21;
-  if (dat & BIT26) data |= BIT29;
-  if (dat & BIT27) data |= BIT19;
-  if (dat & BIT28) data |= BIT23;
-  if (dat & BIT29) data |= BIT22;
-  if (dat & BIT30) data |= BIT27;
-  if (dat & BIT31) data |= BIT26;
+  if (cur_chip == CHIP_C) { // only for C-ROM
+    if (dat & BIT0)  data |= BIT12;
+    if (dat & BIT1)  data |= BIT9;
+    if (dat & BIT2)  data |= BIT8;
+    if (dat & BIT3)  data |= BIT2;
+    if (dat & BIT4)  data |= BIT14;
+    if (dat & BIT5)  data |= BIT0;
+    if (dat & BIT6)  data |= BIT15;
+    if (dat & BIT7)  data |= BIT4;
+    if (dat & BIT8)  data |= BIT1;
+    if (dat & BIT9)  data |= BIT5;
+    if (dat & BIT10) data |= BIT13;
+    if (dat & BIT11) data |= BIT3;
+    if (dat & BIT12) data |= BIT7;
+    if (dat & BIT13) data |= BIT6;
+    if (dat & BIT14) data |= BIT11;
+    if (dat & BIT15) data |= BIT10;
+    if (dat & BIT16) data |= BIT28;
+    if (dat & BIT17) data |= BIT25;
+    if (dat & BIT18) data |= BIT24;
+    if (dat & BIT19) data |= BIT18;
+    if (dat & BIT20) data |= BIT30;
+    if (dat & BIT21) data |= BIT16;
+    if (dat & BIT22) data |= BIT31;
+    if (dat & BIT23) data |= BIT20;
+    if (dat & BIT24) data |= BIT17;
+    if (dat & BIT25) data |= BIT21;
+    if (dat & BIT26) data |= BIT29;
+    if (dat & BIT27) data |= BIT19;
+    if (dat & BIT28) data |= BIT23;
+    if (dat & BIT29) data |= BIT22;
+    if (dat & BIT30) data |= BIT27;
+    if (dat & BIT31) data |= BIT26;
+  } else {
+    data = dat;
+  }
   
   return data;
 }
@@ -80,38 +73,42 @@ static uint32_t cv_scr_data(uint32_t dat) // china pinout scramble
 {
   uint32_t data = 0;
 
-  if (dat & BIT0)  data |= BIT5;
-  if (dat & BIT1)  data |= BIT8;
-  if (dat & BIT2)  data |= BIT3;
-  if (dat & BIT3)  data |= BIT11;
-  if (dat & BIT4)  data |= BIT7;
-  if (dat & BIT5)  data |= BIT9;
-  if (dat & BIT6)  data |= BIT13;
-  if (dat & BIT7)  data |= BIT12;
-  if (dat & BIT8)  data |= BIT2;
-  if (dat & BIT9)  data |= BIT1;
-  if (dat & BIT10) data |= BIT15;
-  if (dat & BIT11) data |= BIT14;
-  if (dat & BIT12) data |= BIT0;
-  if (dat & BIT13) data |= BIT10;
-  if (dat & BIT14) data |= BIT4;
-  if (dat & BIT15) data |= BIT6;
-  if (dat & BIT16) data |= BIT21;
-  if (dat & BIT17) data |= BIT24;
-  if (dat & BIT18) data |= BIT19;
-  if (dat & BIT19) data |= BIT27;
-  if (dat & BIT20) data |= BIT23;
-  if (dat & BIT21) data |= BIT25;
-  if (dat & BIT22) data |= BIT29;
-  if (dat & BIT23) data |= BIT28;
-  if (dat & BIT24) data |= BIT18;
-  if (dat & BIT25) data |= BIT17;
-  if (dat & BIT26) data |= BIT31;
-  if (dat & BIT27) data |= BIT30;
-  if (dat & BIT28) data |= BIT16;
-  if (dat & BIT29) data |= BIT26;
-  if (dat & BIT30) data |= BIT20;
-  if (dat & BIT31) data |= BIT22;
+  if (cur_chip == CHIP_C) { // only for C-ROM
+    if (dat & BIT0)  data |= BIT5;
+    if (dat & BIT1)  data |= BIT8;
+    if (dat & BIT2)  data |= BIT3;
+    if (dat & BIT3)  data |= BIT11;
+    if (dat & BIT4)  data |= BIT7;
+    if (dat & BIT5)  data |= BIT9;
+    if (dat & BIT6)  data |= BIT13;
+    if (dat & BIT7)  data |= BIT12;
+    if (dat & BIT8)  data |= BIT2;
+    if (dat & BIT9)  data |= BIT1;
+    if (dat & BIT10) data |= BIT15;
+    if (dat & BIT11) data |= BIT14;
+    if (dat & BIT12) data |= BIT0;
+    if (dat & BIT13) data |= BIT10;
+    if (dat & BIT14) data |= BIT4;
+    if (dat & BIT15) data |= BIT6;
+    if (dat & BIT16) data |= BIT21;
+    if (dat & BIT17) data |= BIT24;
+    if (dat & BIT18) data |= BIT19;
+    if (dat & BIT19) data |= BIT27;
+    if (dat & BIT20) data |= BIT23;
+    if (dat & BIT21) data |= BIT25;
+    if (dat & BIT22) data |= BIT29;
+    if (dat & BIT23) data |= BIT28;
+    if (dat & BIT24) data |= BIT18;
+    if (dat & BIT25) data |= BIT17;
+    if (dat & BIT26) data |= BIT31;
+    if (dat & BIT27) data |= BIT30;
+    if (dat & BIT28) data |= BIT16;
+    if (dat & BIT29) data |= BIT26;
+    if (dat & BIT30) data |= BIT20;
+    if (dat & BIT31) data |= BIT22;
+  } else {
+    data = dat;
+  }
   
   return data;
 }
@@ -254,7 +251,7 @@ uint32_t CV_ADDR2ST(uint32_t half, uint32_t addr)
 uint32_t CV_ReadData(uint32_t half, uint32_t addr)
 {
   uint32_t data;
-  
+
   CV_SetAddress(addr);
   CV_nCE(CV_ADDR2ST(half, addr));
   CV_nOE(CV_ADDR2ST(half, addr));
@@ -282,22 +279,24 @@ void CV_WriteData(uint32_t half, uint32_t addr, uint32_t data)
 
 void CV_ReadID(uint32_t chip)
 {
-  uint32_t half = chip & 0x03;
+  uint32_t half = chip;
   uint32_t addr = 0;
   
   if (chip > 2)
   {
-	chip -= 2;
+	half -= 2;
 	addr = BIT27;
   }
   CV_WriteData(half, addr, 0x90); // read ID
   test = CV_ReadData(half, addr + 0x01); // ID reg.
   CV_WriteData(half, addr, 0xFF); // exit
+  error += (test == 0x88B0) ? 0 : 1;
 }
 
-void CV_SectorErase(uint32_t addr)
+uint32_t CV_SectorErase(uint32_t addr)
 {
   uint32_t st1, st2;
+  uint32_t res = 0;
   
   CV_WriteData(3, 0,    0x50); // clear status
   CV_WriteData(3, addr, 0x60); // block unlock
@@ -310,8 +309,43 @@ void CV_SectorErase(uint32_t addr)
     st2 = CV_ReadData(2, addr); // read ststus 2
   }
   while (((st1 & BIT7) == 0) || ((st2 & BIT7) == 0));
-  if ((st1 != 0x80) || (st2 != 0x80)) error++;
+  if ((st1 != 0x80) || (st2 != 0x80)) res = 1;
   CV_WriteData(3, addr, 0xFF); // exit
+
+  return res;
+}
+
+uint32_t CV_BufProgram(uint32_t addr)
+{
+  uint32_t bp;
+  uint32_t data, st1, st2;
+  uint32_t res = 0;
+
+  CV_WriteData(3, 0,    0x50); // clear status
+  CV_WriteData(3, addr, 0xE9); // buffered program setup
+  CV_WriteData(3, addr, REGION_SIZE-1);
+  for (uint32_t i = 0; i < REGION_SIZE; i++)
+  {
+    bp = buffer_pos + cv_toss_address(i) * 4;
+	data = buffer[bp++];
+    data |= buffer[bp++] << 8;
+    data |= buffer[bp++] << 16;
+    data |= buffer[bp++] << 24;
+	data = cv_scr_data(data);
+    CV_WriteData(1, addr + i, data);
+    CV_WriteData(2, addr + i, data >> 16);
+  }
+  CV_WriteData(3, addr, 0xD0); // buffered program confirm
+  do
+  {
+    st1 = CV_ReadData(1, addr); // read ststus 1
+    st2 = CV_ReadData(2, addr); // read ststus 2
+  }
+  while (((st1 & BIT7) == 0) || ((st2 & BIT7) == 0));
+  if ((st1 != 0x80) || (st2 != 0x80)) res = 1;
+  CV_WriteData(3, addr, 0xFF); // exit
+
+  return res;
 }
 
 uint32_t CV_Read(void)
@@ -325,9 +359,7 @@ uint32_t CV_Read(void)
   if (address == 0) CV_nCE(0x00);
 
   addr = address++;
-#ifdef DE_SCRAMBLE_ADDR
-  addr = cv_desc_address(addr);
-#endif
+  addr = cv_toss_address(addr);
   CV_SetAddress(addr);
 
   CV_nOE(CV_ADDR2ST (1, addr));
@@ -385,16 +417,16 @@ void CV_Dump(void)
 void CV_Prog(void)
 {
   uint32_t addr;
-  uint32_t data, st1, st2;
   uint32_t f;
 
   addr = address;
   address += REGION_SIZE;
-#ifdef DE_SCRAMBLE_ADDR
-  addr = cv_scr_address(addr);
-#endif
   if ((addr & (SECTOR_SIZE-1)) == 0) {
-    CV_SectorErase(addr);
+	if (CV_SectorErase(addr)) {
+      error += SECTOR_SIZE;
+	}
+	sector = addr;
+	Delay_us(10000); // 10ms
   }
   f = 1;
   for (uint32_t i = 0; i < (REGION_SIZE * 4); i++)
@@ -405,35 +437,18 @@ void CV_Prog(void)
 	  break;
 	}
   }
-  if (f)
+  if (f == 0)
   {
-	buffer_pos += REGION_SIZE * 4;
+	if (CV_BufProgram(addr)) {
+      error++;
+	  address = sector;
+      buffer_pos = 0;
+	  flg_seek = 1;
+	  return;
+	}
+	Delay_us(1000); // 1ms
   }
-  else
-  {
-    CV_WriteData(3, 0,    0x50); // clear status
-    CV_WriteData(3, addr, 0xE9); // buffered program setup
-    CV_WriteData(3, addr, REGION_SIZE-1);
-    for (uint32_t i = 0; i < REGION_SIZE; i++)
-    {
-      data = buffer[buffer_pos++];
-      data |= buffer[buffer_pos++] << 8;
-      data |= buffer[buffer_pos++] << 16;
-      data |= buffer[buffer_pos++] << 24;
-      data = cv_scr_data(data);
-      CV_WriteData(1, addr + i, data);
-      CV_WriteData(2, addr + i, data >> 16);
-    }
-    CV_WriteData(3, addr, 0xD0); // buffered program confirm
-    do
-    {
-      st1 = CV_ReadData(1, addr); // read ststus 1
-      st2 = CV_ReadData(2, addr); // read ststus 2
-    }
-    while (((st1 & BIT7) == 0) || ((st2 & BIT7) == 0));
-    if ((st1 != 0x80) || (st2 != 0x80)) error++;
-    CV_WriteData(3, addr, 0xFF); // exit
-  }
+  buffer_pos += REGION_SIZE * 4;
   if (buffer_pos >= BUFFER_SIZE) {
 	buffer_pos = 0;
   }
@@ -459,4 +474,7 @@ void CV_Veri(void)
 void CV_Test(void)
 {
   CV_ReadID(1);
+  CV_ReadID(2);
+  CV_ReadID(3);
+  CV_ReadID(4);
 }

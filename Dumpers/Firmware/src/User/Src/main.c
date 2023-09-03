@@ -117,6 +117,11 @@ void doProg(void)
 {
   UINT br;
 
+  if (flg_seek) {
+    f_lseek(&file, address * 4);
+	flg_seek = 0;
+  }
+
   if (buffer_pos == 0) {
     f_read(&file, &buffer, BUFFER_SIZE, &br);
     if (br != BUFFER_SIZE) {
@@ -209,6 +214,7 @@ int main()
 
   /* Initialize GPIO */
   MX_GPIO_Init();
+  CV_GPIO_Init(); // CV oh
 
   /* Initialize LED/BTN  */
   BSP_LED_Init(LED_BLUE);
@@ -321,6 +327,7 @@ int main()
           flg_test   = 0;
           buffer_pos = 0;
           address = 0;
+          sector  = 0;
           test    = 0;
           error   = 0;
           break;

@@ -48,8 +48,10 @@ uint32_t buffer_pos;
 
 // other
 uint32_t address;
+uint32_t sector;
 uint32_t test;
 uint32_t error;
 
 // flags
 uint32_t flg_test;
+uint32_t flg_seek;

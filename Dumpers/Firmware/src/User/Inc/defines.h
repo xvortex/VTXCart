@@ -5,7 +5,8 @@
  extern "C" {
 #endif
 
-//#define DE_SCRAMBLE_ADDR // de/scramble address
+// de/scramble address
+//#define DE_SCRAMBLE_ADDR_P
 
 #define CHIP_NAME_P     "P-ROM"
 #define DUMP_FILENAME_P "prom.bin"

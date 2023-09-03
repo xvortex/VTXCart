@@ -53,11 +53,13 @@ extern uint32_t buffer_pos;
 
 // other
 extern uint32_t address;
+extern uint32_t sector;
 extern uint32_t test;
 extern uint32_t error;
 
 // flags
 extern uint32_t flg_test;
+extern uint32_t flg_seek;
                         
 #ifdef __cplusplus
 }

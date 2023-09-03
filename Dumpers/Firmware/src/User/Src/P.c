@@ -4,7 +4,7 @@
 // 55LV100S (2xS29GL512P)
 #define SECTOR_SIZE 0x20000
 
-#ifdef DE_SCRAMBLE_ADDR
+#ifdef DE_SCRAMBLE_ADDR_P
 static uint32_t p_desc_address(uint32_t addr) // china pinout descramble
 {
   uint32_t address = 0;
@@ -278,7 +278,7 @@ uint32_t P_Read(void)
   uint32_t d[2];
 
   addr = address++;
-#ifdef DE_SCRAMBLE_ADDR
+#ifdef DE_SCRAMBLE_ADDR_P
   addr = p_desc_address(addr);
 #endif
   P_SetAddress(addr);
@@ -320,7 +320,7 @@ void P_Prog(void)
 
   addr = address;
   address += 32;
-#ifdef DE_SCRAMBLE_ADDR
+#ifdef DE_SCRAMBLE_ADDR_P
   addr = p_scr_address(addr);
 #endif
   saddr = addr & ~(SECTOR_SIZE-1);
