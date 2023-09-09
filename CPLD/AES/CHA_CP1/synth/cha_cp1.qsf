@@ -1,0 +1,169 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+# Date created = 13:15:02  May 05, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		cha_cp1_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY MAX3000A
+set_global_assignment -name DEVICE "EPM3256ATC144-10"
+set_global_assignment -name TOP_LEVEL_ENTITY cha_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name SMART_RECOMPILE ON
+
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS OFF
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name MAX7000_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name MAX7000_DEVICE_IO_STANDARD "3.3-V LVTTL"
+
+set_location_assignment PIN_80	-to	SDMRD
+set_location_assignment PIN_81	-to	SDROM
+set_location_assignment PIN_84	-to	DOTA
+set_location_assignment PIN_86	-to	DOTB
+set_location_assignment PIN_98	-to	LOAD
+set_location_assignment PIN_99	-to	H
+set_location_assignment PIN_100	-to	CLK_12M
+set_location_assignment PIN_101	-to	EVEN
+set_location_assignment PIN_125	-to	SDRD0
+set_location_assignment PIN_128	-to	PCK1B
+
+set_location_assignment PIN_1	-to	CR[0]
+set_location_assignment PIN_2	-to	CR[1]
+set_location_assignment PIN_5	-to	CR[2]
+set_location_assignment PIN_6	-to	CR[3]
+set_location_assignment PIN_7	-to	CR[4]
+set_location_assignment PIN_8	-to	CR[5]
+set_location_assignment PIN_9	-to	CR[6]
+set_location_assignment PIN_10	-to	CR[7]
+set_location_assignment PIN_11	-to	CR[8]
+set_location_assignment PIN_12	-to	CR[9]
+set_location_assignment PIN_14	-to	CR[10]
+set_location_assignment PIN_15	-to	CR[11]
+set_location_assignment PIN_16	-to	CR[12]
+set_location_assignment PIN_18	-to	CR[13]
+set_location_assignment PIN_19	-to	CR[14]
+set_location_assignment PIN_21	-to	CR[15]
+set_location_assignment PIN_22	-to	CR[16]
+set_location_assignment PIN_23	-to	CR[17]
+set_location_assignment PIN_25	-to	CR[18]
+set_location_assignment PIN_27	-to	CR[19]
+set_location_assignment PIN_28	-to	CR[20]
+set_location_assignment PIN_29	-to	CR[21]
+set_location_assignment PIN_30	-to	CR[22]
+set_location_assignment PIN_31	-to	CR[23]
+set_location_assignment PIN_32	-to	CR[24]
+set_location_assignment PIN_34	-to	CR[25]
+set_location_assignment PIN_35	-to	CR[26]
+set_location_assignment PIN_36	-to	CR[27]
+set_location_assignment PIN_37	-to	CR[28]
+set_location_assignment PIN_38	-to	CR[29]
+set_location_assignment PIN_39	-to	CR[30]
+set_location_assignment PIN_40	-to	CR[31]
+
+set_location_assignment PIN_134	-to	C_ADDR[17]
+set_location_assignment PIN_133	-to	C_ADDR[18]
+set_location_assignment PIN_132	-to	C_ADDR[19]
+set_location_assignment PIN_131	-to	C_ADDR[20]
+set_location_assignment PIN_122	-to	C_ADDR[21]
+set_location_assignment PIN_121	-to	C_ADDR[22]
+set_location_assignment PIN_120	-to	C_ADDR[23]
+set_location_assignment PIN_119	-to	C_ADDR[24]
+set_location_assignment PIN_118	-to	C_ADDR[25]
+set_location_assignment PIN_117	-to	C_ADDR[26]
+
+set_location_assignment PIN_55	-to	C1_nOE[0]
+set_location_assignment PIN_54	-to	C1_nOE[1]
+set_location_assignment PIN_53	-to	C2_nOE[0]
+set_location_assignment PIN_49	-to	C2_nOE[1]
+
+set_location_assignment PIN_106	-to	PBUS_L[12]
+set_location_assignment PIN_107	-to	PBUS_L[13]
+set_location_assignment PIN_109	-to	PBUS_L[14]
+set_location_assignment PIN_110	-to	PBUS_L[15]
+
+set_location_assignment PIN_111	-to	PBUS_U[20]
+set_location_assignment PIN_112	-to	PBUS_U[21]
+set_location_assignment PIN_113	-to	PBUS_U[22]
+
+set_location_assignment PIN_83	-to	SDA_L[0]
+set_location_assignment PIN_82	-to	SDA_L[1]
+
+set_location_assignment PIN_79	-to	SDA_U[8]
+set_location_assignment PIN_78	-to	SDA_U[9]
+set_location_assignment PIN_75	-to	SDA_U[10]
+set_location_assignment PIN_74	-to	SDA_U[11]
+set_location_assignment PIN_72	-to	SDA_U[12]
+set_location_assignment PIN_71	-to	SDA_U[13]
+set_location_assignment PIN_70	-to	SDA_U[14]
+set_location_assignment PIN_69	-to	SDA_U[15]
+
+set_location_assignment PIN_87	-to	GAD[0]
+set_location_assignment PIN_88	-to	GAD[1]
+set_location_assignment PIN_90	-to	GAD[2]
+set_location_assignment PIN_91	-to	GAD[3]
+
+set_location_assignment PIN_92	-to	GBD[0]
+set_location_assignment PIN_93	-to	GBD[1]
+set_location_assignment PIN_96	-to	GBD[2]
+set_location_assignment PIN_97	-to	GBD[3]
+
+set_location_assignment PIN_56	-to	M_ADDR[11]
+set_location_assignment PIN_60	-to	M_ADDR[12]
+set_location_assignment PIN_61	-to	M_ADDR[13]
+set_location_assignment PIN_62	-to	M_ADDR[14]
+set_location_assignment PIN_63	-to	M_ADDR[15]
+set_location_assignment PIN_65	-to	M_ADDR[16]
+set_location_assignment PIN_66	-to	M_ADDR[17]
+
+set_location_assignment PIN_67	-to	M1_nCE
+set_location_assignment PIN_68	-to	M1_nOE
+
+set_location_assignment PIN_136	-to GSEL[0]
+set_location_assignment PIN_137	-to GSEL[1]
+set_location_assignment PIN_138	-to GSEL[2]
+set_location_assignment PIN_139	-to GSEL[3]
+set_location_assignment PIN_140	-to GSEL[4]
+set_location_assignment PIN_141	-to GSEL[5]
+set_location_assignment PIN_142	-to GSEL[6]
+set_location_assignment PIN_143	-to GSEL[7]
+
+set_global_assignment -name VERILOG_FILE ../rtl/cha_top.v
+set_global_assignment -name VERILOG_FILE ../rtl/zmc.v
+set_global_assignment -name VERILOG_FILE ../rtl/zmc2_dot.v
+set_global_assignment -name SDC_FILE cha_cp1.sdc

@@ -1,0 +1,171 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+# Date created = 13:15:02  May 05, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		prog_pcm2_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY MAX3000A
+set_global_assignment -name DEVICE "EPM3256ATC144-10"
+set_global_assignment -name TOP_LEVEL_ENTITY pcm2_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name SMART_RECOMPILE ON
+
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS OFF
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name MAX7000_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name MAX7000_DEVICE_IO_STANDARD "3.3-V LVTTL"
+
+set_location_assignment PIN_36	-to	CLK_68KCLKB
+
+set_location_assignment PIN_125	-to	SDPMPX
+set_location_assignment PIN_126	-to	nSDPOE
+set_location_assignment PIN_128	-to	nSDROE
+set_location_assignment PIN_131	-to	SDRMPX
+
+set_location_assignment PIN_1	-to	SDRA_U[23]
+set_location_assignment PIN_2	-to	SDRA_U[22]
+set_location_assignment PIN_5	-to	SDRA_U[21]
+set_location_assignment PIN_6	-to	SDRA_U[20]
+set_location_assignment PIN_7	-to	SDRA_L[9]
+set_location_assignment PIN_8	-to	SDRA_L[8]
+
+set_location_assignment PIN_9	-to	SDPA[11]
+set_location_assignment PIN_10	-to	SDPA[10]
+set_location_assignment PIN_11	-to	SDPA[9]
+set_location_assignment PIN_12	-to	SDPA[8]
+
+set_location_assignment PIN_14	-to	SDRAD[7]
+set_location_assignment PIN_15	-to	SDRAD[6]
+set_location_assignment PIN_16	-to	SDRAD[5]
+set_location_assignment PIN_18	-to	SDRAD[4]
+set_location_assignment PIN_19	-to	SDRAD[3]
+set_location_assignment PIN_21	-to	SDRAD[2]
+set_location_assignment PIN_22	-to	SDRAD[1]
+set_location_assignment PIN_23	-to	SDRAD[0]
+
+set_location_assignment PIN_25	-to	SDPAD[7]
+set_location_assignment PIN_27	-to	SDPAD[6]
+set_location_assignment PIN_28	-to	SDPAD[5]
+set_location_assignment PIN_29	-to	SDPAD[4]
+set_location_assignment PIN_30	-to	SDPAD[3]
+set_location_assignment PIN_31	-to	SDPAD[2]
+set_location_assignment PIN_32	-to	SDPAD[1]
+set_location_assignment PIN_34	-to	SDPAD[0]
+
+set_location_assignment PIN_117 -to V_ADDR[26]
+set_location_assignment PIN_113 -to V_ADDR[25]
+set_location_assignment PIN_96  -to V_ADDR[24]
+set_location_assignment PIN_91  -to V_ADDR[23]
+set_location_assignment PIN_87  -to V_ADDR[22]
+set_location_assignment PIN_82  -to V_ADDR[21]
+set_location_assignment PIN_80  -to V_ADDR[20]
+set_location_assignment PIN_78  -to V_ADDR[19]
+set_location_assignment PIN_74  -to V_ADDR[18]
+set_location_assignment PIN_132 -to V_ADDR[17]
+set_location_assignment PIN_122 -to V_ADDR[16]
+set_location_assignment PIN_121 -to V_ADDR[15]
+set_location_assignment PIN_120 -to V_ADDR[14]
+set_location_assignment PIN_116 -to V_ADDR[13]
+set_location_assignment PIN_112 -to V_ADDR[12]
+set_location_assignment PIN_108 -to V_ADDR[11]
+set_location_assignment PIN_102 -to V_ADDR[10]
+set_location_assignment PIN_99  -to V_ADDR[9]
+set_location_assignment PIN_93  -to V_ADDR[8]
+set_location_assignment PIN_88  -to V_ADDR[7]
+set_location_assignment PIN_83  -to V_ADDR[6]
+set_location_assignment PIN_81  -to V_ADDR[5]
+set_location_assignment PIN_79  -to V_ADDR[4]
+set_location_assignment PIN_75  -to V_ADDR[3]
+set_location_assignment PIN_72  -to V_ADDR[2]
+set_location_assignment PIN_67  -to V_ADDR[1]
+set_location_assignment PIN_63  -to V_ADDR[0]
+
+set_location_assignment PIN_137 -to V_DATA[31]
+set_location_assignment PIN_142 -to V_DATA[30]
+set_location_assignment PIN_140 -to V_DATA[29]
+set_location_assignment PIN_138 -to V_DATA[28]
+set_location_assignment PIN_133 -to V_DATA[27]
+set_location_assignment PIN_111 -to V_DATA[26]
+set_location_assignment PIN_106 -to V_DATA[25]
+set_location_assignment PIN_101 -to V_DATA[24]
+set_location_assignment PIN_134 -to V_DATA[23]
+set_location_assignment PIN_143 -to V_DATA[22]
+set_location_assignment PIN_141 -to V_DATA[21]
+set_location_assignment PIN_139 -to V_DATA[20]
+set_location_assignment PIN_136 -to V_DATA[19]
+set_location_assignment PIN_109 -to V_DATA[18]
+set_location_assignment PIN_103 -to V_DATA[17]
+set_location_assignment PIN_100 -to V_DATA[16]
+set_location_assignment PIN_98  -to V_DATA[15]
+set_location_assignment PIN_92  -to V_DATA[14]
+set_location_assignment PIN_86  -to V_DATA[13]
+set_location_assignment PIN_69  -to V_DATA[12]
+set_location_assignment PIN_66  -to V_DATA[11]
+set_location_assignment PIN_62  -to V_DATA[10]
+set_location_assignment PIN_56  -to V_DATA[9]
+set_location_assignment PIN_60  -to V_DATA[8]
+set_location_assignment PIN_97  -to V_DATA[7]
+set_location_assignment PIN_90  -to V_DATA[6]
+set_location_assignment PIN_84  -to V_DATA[5]
+set_location_assignment PIN_68  -to V_DATA[4]
+set_location_assignment PIN_65  -to V_DATA[3]
+set_location_assignment PIN_61  -to V_DATA[2]
+set_location_assignment PIN_55  -to V_DATA[1]
+set_location_assignment PIN_54  -to V_DATA[0]
+
+set_location_assignment PIN_70  -to V_nOE[0]
+set_location_assignment PIN_71  -to V_nOE[1]
+set_location_assignment PIN_107 -to V_nOE[2]
+set_location_assignment PIN_110 -to V_nOE[3]
+
+set_location_assignment PIN_37	-to	ICON[9]
+set_location_assignment PIN_38	-to	ICON[8]
+set_location_assignment PIN_39	-to	ICON[7]
+set_location_assignment PIN_40	-to	ICON[6]
+set_location_assignment PIN_41	-to	ICON[5]
+set_location_assignment PIN_42	-to	ICON[4]
+set_location_assignment PIN_43	-to	ICON[3]
+set_location_assignment PIN_44	-to	ICON[2]
+set_location_assignment PIN_45	-to	ICON[1]
+set_location_assignment PIN_46	-to	ICON[0]
+
+set_global_assignment -name VERILOG_FILE ../rtl/pcm2_top.v
+set_global_assignment -name VERILOG_FILE ../rtl/pcm.v
+set_global_assignment -name SDC_FILE prog_pcm2.sdc
