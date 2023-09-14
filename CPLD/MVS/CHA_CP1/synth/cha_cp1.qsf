@@ -96,10 +96,10 @@ set_location_assignment PIN_87	-to PCK2B
 set_location_assignment PIN_125	-to SDRD0
 set_location_assignment PIN_128	-to PCK1B
 
-set_location_assignment PIN_118	-to C_ADDR[0]
-set_location_assignment PIN_119	-to C_ADDR[1]
-set_location_assignment PIN_120	-to C_ADDR[2]
-set_location_assignment PIN_121	-to C_ADDR[3]
+set_location_assignment PIN_118	-to C_ADDR[3]
+set_location_assignment PIN_119	-to C_ADDR[2]
+set_location_assignment PIN_120	-to C_ADDR[1]
+set_location_assignment PIN_121	-to C_ADDR[0]
 set_location_assignment PIN_122	-to C_ADDR[4]
 set_location_assignment PIN_131	-to C_ADDR[5]
 set_location_assignment PIN_132	-to C_ADDR[6]
