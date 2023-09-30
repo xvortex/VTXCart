@@ -44,7 +44,7 @@ module cp1_top(
 	reg [2:0] BANKS;
 	reg [8:0] IX;
 
-	reg [7:0] GSEL;
+	reg [7:0] GSEL = 8'b00000000;
 
 	assign ICON = {1'bz, GSEL[7:3], 1'bz, GSEL[2:0]};
 
@@ -71,7 +71,6 @@ module cp1_top(
 		if (!nRESET)
 		begin
 			P_BANK <= 3'd0;
-			GSEL   <= 8'd0;
 		end
 		else
 		begin
