@@ -7,7 +7,7 @@
 program VTXCart;
 
 uses
-  Windows, Dialogs, Sysutils, IdGlobal, IdHashSHA, IdHashCRC;
+  Windows, Sysutils, IdGlobal, IdHashSHA, IdHashCRC;
 
 type
   TARR = packed array of byte;
@@ -282,7 +282,7 @@ procedure POP (fn: string; var pos: cardinal; mask: cardinal; var rom: TARR; typ
 var
   f: file of byte;
   i, l, fs, ix: cardinal;
-  ff, dp: boolean;
+  ff: boolean;
 begin
   if (fileexists (fn)) then
   begin
@@ -319,13 +319,6 @@ begin
     l := (l + mask) and (not (mask - 1)); // shrink to mask
   end;
 
-  if ((typ = type_prom) and (l = $100000)) then // double prom (if no bs)
-  begin
-    l := l + $100000;
-    dp := true;
-  end
-  else dp := false;
-
   ix := length (rom);
   SetLength (rom, ix + l);
   if ((typ <> type_bram) and (typ <> type_vrom)) then
@@ -336,11 +329,6 @@ begin
   if (ff) then
   begin
     blockread (f, &rom [ix], fs);
-    if (dp) then
-    begin
-      seek (f, 0);
-      blockread (f, &rom [ix + $100000], fs);
-    end;
     closefile (f);
   end;
 
@@ -848,12 +836,6 @@ begin
     prom [$E0697] := w1 - 1;
   end;
 
-  // double prom
-  for i := 0 to $100000 - 1 do
-  begin
-    prom [i + $100000] := prom [i];
-  end;
-
   PSwap (prom, ROM [0].prom);
 
   setlength (prom, 0);
@@ -1021,7 +1003,7 @@ begin
 end;
 
 begin
-  Writeln ('SNK MultiCart Compiler v1.00 (c) Vortex ''2023');
+  Writeln ('SNK MultiCart Compiler v1.01 (c) Vortex ''2023');
   sys := 'mvs';
   if (paramcount < 1) then
   begin
