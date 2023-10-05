@@ -7,7 +7,7 @@
 program VTXCart;
 
 uses
-  Windows, Dialogs, Sysutils, IdGlobal, IdHashSHA, IdHashCRC;
+  Windows, Sysutils, IdGlobal, IdHashSHA, IdHashCRC;
 
 type
   TARR = packed array of byte;
@@ -78,6 +78,7 @@ var
   ROM: array of TROM;
   fn, sys: string;
   i: integer;
+  crom_extend: cardinal;
   crom_pos: cardinal;
   prom_pos: cardinal;
   mrom_pos: cardinal;
@@ -531,7 +532,7 @@ begin
       if (length (ROM[i].crom) <= $0200000) then mask := $01;
       if (length (ROM[i].crom) <= $0100000) then mask := $00;
       w := ROM[i].crom_addr div crom_mask;
-      s := inttostr (i) + ': begin MASK <= 6''b' + inttobin (mask, 6) + '; IX <= 11''b' + inttobin (w, 11) + '; end // ' + ROM[i].name;
+      s := inttostr (i) + ': begin MASK <= 6''b' + inttobin (mask, 6) + '; IX <= 12''b' + inttobin (w, 12) + '; end // ' + ROM[i].name;
       writeln (f, s);
     end;
   end;
@@ -668,7 +669,7 @@ begin
   CreateDir ('ROM');
 
   SaveROM ('ROM\prom', prom_max div 3, prom_max, type_prom);
-  SaveROM ('ROM\crom', crom_max div 2, crom_max, type_crom);
+  SaveROM ('ROM\crom', crom_max div 2, crom_max + crom_extend, type_crom);
   SaveROM ('ROM\vrom', vrom_max, vrom_max, type_vrom);
   SaveROM ('ROM\srom', srom_max, srom_max, type_srom);
   SaveROM ('ROM\mrom', mrom_max, mrom_max, type_mrom);
@@ -1021,8 +1022,9 @@ begin
 end;
 
 begin
-  Writeln ('SNK MultiCart Compiler v1.00 (c) Vortex ''2023');
+  Writeln ('SNK MultiCart Compiler v1.01 (c) Vortex ''2023');
   sys := 'mvs';
+  crom_extend := 0;
   if (paramcount < 1) then
   begin
     WriteLn ('Usage: ', changefileext (extractfilename (paramstr (0)), ''), ' <filename> <command> .. <command> ..');
@@ -1038,6 +1040,7 @@ begin
   begin
     if (lowercase (paramstr (i)) = 'mvs') then sys := 'mvs';
     if (lowercase (paramstr (i)) = 'aes') then sys := 'aes';
+    if (lowercase (paramstr (i)) = 'c3g') then crom_extend := $40000000;
   end;
   Import (fn);
   Report;
