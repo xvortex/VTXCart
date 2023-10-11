@@ -320,13 +320,6 @@ begin
     l := (l + mask) and (not (mask - 1)); // shrink to mask
   end;
 
-  if ((typ = type_prom) and (l = $100000)) then // double prom (if no bs)
-  begin
-    l := l + $100000;
-    dp := true;
-  end
-  else dp := false;
-
   ix := length (rom);
   SetLength (rom, ix + l);
   if ((typ <> type_bram) and (typ <> type_vrom)) then
@@ -337,11 +330,6 @@ begin
   if (ff) then
   begin
     blockread (f, &rom [ix], fs);
-    if (dp) then
-    begin
-      seek (f, 0);
-      blockread (f, &rom [ix + $100000], fs);
-    end;
     closefile (f);
   end;
 
@@ -847,12 +835,6 @@ begin
     prom [$E0669] := w1;
     prom [$E0671] := w1;
     prom [$E0697] := w1 - 1;
-  end;
-
-  // double prom
-  for i := 0 to $100000 - 1 do
-  begin
-    prom [i + $100000] := prom [i];
   end;
 
   PSwap (prom, ROM [0].prom);
