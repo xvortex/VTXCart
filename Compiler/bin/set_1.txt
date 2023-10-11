@@ -35,7 +35,7 @@ bstars2
 quizdai2
 3countb
 aof
-samsho
+# samsho	- set 2
 tophuntr
 fatfury2
 janshin
@@ -45,7 +45,7 @@ viewpoin
 ssideki
 wh1
 crswd2bl
-kof94
+# kof94		- set 2
 aof2
 wh2
 fatfursp
@@ -53,7 +53,7 @@ savagere
 fightfev
 ssideki2
 spinmast
-samsho2
+# samsho2	- set 2
 wh2j
 wjammers
 karnovr
@@ -72,9 +72,9 @@ quizkof
 ssideki3
 doubledr
 pbobblen
-kof95
+# kof95		- set 2
 tws96
-samsho3
+# samsho3	- set 2
 stakwin
 pulstar
 whp
@@ -86,7 +86,7 @@ aof3
 sonicwi3
 froman2b
 turfmast
-mslug
+# mslug		- set 2
 puzzledp
 moshougi
 marukodq
@@ -96,7 +96,7 @@ goalx3
 zintrckb
 overtop
 neodrift
-kof96
+# kof96		- set 2
 ssideki4
 kizuna
 ninjamas
@@ -104,7 +104,7 @@ ragnagrd
 pgoal
 ironclad
 magdrop2
-samsho4
+# samsho4	- set 2
 rbffspec
 twinspri
 wakuwak7
@@ -112,7 +112,7 @@ stakwin2
 ghostlop
 breakers
 miexchng
-kof97
+# kof97		- set 2
 magdrop3
 lastblad
 puzzldpr
@@ -121,9 +121,9 @@ popbounc
 shocktro
 blazstar
 rbff2
-mslug2
-mslug2t
-kof98
+# mslug2	- slow
+# mslug2t	- set 2
+# kof98		- set 2
 lastbld2
 neocup98
 breakrev
@@ -131,38 +131,28 @@ shocktr2
 flipshot
 pbobbl2n
 ctomaday
-mslugx
-kof99
-kof99b
+# mslugx	- set 2
+# kof99b	- set 2
 ganryu
-garou
 garoub
 s1945p
 preisle2
-mslug3
-mslug3b
-kof2000
-kof2000b
+# mslug3b	- set 2
+# kof2000b	- set 2
 bangbead
 nitd
 sengoku3
-kof2001
-mslug4
-mslug4b
+# kof2001	- set 2
+# mslug4b	- set 2
 rotd
-kof2002
-matrim
+# kof2002	- set 2
 matrimb
 pnyaa
-mslug5
-mslug5b
-svc
+# mslug5b	- set 2
 svcb
-samsho5
-kof2003
-kof2003b
-samsh5sp
-xevious
+# samsho5	- set 2
+# kof2003b	- set 2
+# samsh5sp	- set 2
 teot
 xenocrisis
 tstsuite

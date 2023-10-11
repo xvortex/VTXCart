@@ -1,0 +1,11 @@
+Compiler/Games/*/*rom*
+Compiler/bin/ROM
+Compiler/bin/Verilog
+Compiler/bin/MAME
+Compiler/bin/*.log
+
+CPLD/*/*/synth/db
+CPLD/*/*/synth/output_files
+CPLD/*/*/synth/incremental_db/
+CPLD/*/*/synth/*.qws
+CPLD/*/*/rtl/*.inc

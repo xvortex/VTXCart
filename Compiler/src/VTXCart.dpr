@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// SNK MultiCart Compiler v1.00
+// SNK MultiCart Compiler v1.01
 // project started 05.19.2023                                  (c) Vortex '2023
 //-----------------------------------------------------------------------------
 
@@ -19,15 +19,15 @@ type
     name:  string;
     mname: string;
     pname: TPname;
-    mode_bsw: integer; // bankswitching mode
-    mode_gra: integer; // graphics mode
-    mode_aud: integer; // audio mode
-    vblk_addr: cardinal;
-    crom_addr: cardinal;
-    prom_addr: cardinal;
-    mrom_addr: cardinal;
-    srom_addr: cardinal;
-    vrom_addr: cardinal;
+    mode_bsw: int64; // bankswitching mode
+    mode_gra: int64; // graphics mode
+    mode_aud: int64; // audio mode
+    vblk_addr: int64;
+    crom_addr: int64;
+    prom_addr: int64;
+    mrom_addr: int64;
+    srom_addr: int64;
+    vrom_addr: int64;
     crom: TARR;
     prom: TARR;
     mrom: TARR;
@@ -77,12 +77,13 @@ const
 var
   ROM: array of TROM;
   fn, sys: string;
-  i: integer;
-  crom_pos: cardinal;
-  prom_pos: cardinal;
-  mrom_pos: cardinal;
-  srom_pos: cardinal;
-  vrom_pos: cardinal;
+  i: int64;
+  crom_extend: int64;
+  crom_pos: int64;
+  prom_pos: int64;
+  mrom_pos: int64;
+  srom_pos: int64;
+  vrom_pos: int64;
 
 procedure WriteLog (s: string);
 var
@@ -134,7 +135,7 @@ begin
   end;
 end;
 
-function GetVBlank (sn: string): cardinal;
+function GetVBlank (sn: string): int64;
 var
   fn, s: string;
   f: textfile;
@@ -159,7 +160,7 @@ begin
   end;
 end;
 
-procedure GetMode (sn: string; var bsw: integer; var gra: integer; var aud: integer);
+procedure GetMode (sn: string; var bsw: int64; var gra: int64; var aud: int64);
 var
   fn, s: string;
   f: textfile;
@@ -187,7 +188,7 @@ end;
 
 function GetBramSize (var bram: TARR): word;
 var
-  ix: integer;
+  ix: int64;
 begin
   ix := $320 + $1000;
   repeat
@@ -204,7 +205,7 @@ end;
 
 procedure PSwap (var rom, res: TARR);
 var
-  i, l: cardinal;
+  i, l: int64;
   tmp: TARR;
 begin
   l := length (rom);
@@ -220,7 +221,7 @@ end;
 
 procedure CSwap (var rom, res: TARR);
 var
-  i, l: cardinal;
+  i, l: int64;
   tmp: TARR;
 begin
   l := length (rom);
@@ -238,7 +239,7 @@ end;
 
 procedure VSplit (var rom, roma, romb: TARR);
 var
-  i, l: cardinal;
+  i, l: int64;
 begin
   l := length (rom);
   if (l < $400000) then l := $400000;
@@ -256,9 +257,9 @@ begin
   end;
 end;
 
-procedure GetPName (n: integer);
+procedure GetPName (n: int64);
 var
-  i, ix: integer;
+  i, ix: int64;
   dw: dword;
   prom: TARR;
 begin
@@ -278,11 +279,11 @@ begin
   SetLength (prom, 0);
 end;
 
-procedure POP (fn: string; var pos: cardinal; mask: cardinal; var rom: TARR; typ: integer);
+procedure POP (fn: string; var pos: int64; mask: int64; var rom: TARR; typ: int64);
 var
   f: file of byte;
-  i, l, fs, ix: cardinal;
-  ff: boolean;
+  i, l, fs, ix: int64;
+  ff, dp: boolean;
 begin
   if (fileexists (fn)) then
   begin
@@ -339,10 +340,10 @@ procedure Import (games: string);
 var
   f: textfile;
   s, fn: string;
-  ix: integer;
+  ix: int64;
 
   rom_index: byte;
-  dummy_pos: cardinal;
+  dummy_pos: int64;
 
 procedure import_menu;
 begin
@@ -463,7 +464,7 @@ end;
 
 procedure Report;
 var
-  i: integer;
+  i: int64;
   s: string;
 begin
   s := 'no' + #9 + 'ngh' + #9 + #9 + 'FPG' + #9 + 'prom_addr' + #9 + 'crom_addr' + #9 + 'vrom_addr' + #9 + 'srom_addr' + #9 + 'mrom_addr' + #9 + 'Menu name';
@@ -497,10 +498,10 @@ end;
 procedure GenIX;
 var
   f: textfile;
-  i: integer;
+  i: int64;
   s: string;
   w: word;
-  banks, mask, mode: integer;
+  banks, mask, mode: int64;
 begin
   CreateDir ('Verilog');
 
@@ -519,7 +520,7 @@ begin
       if (length (ROM[i].crom) <= $0200000) then mask := $01;
       if (length (ROM[i].crom) <= $0100000) then mask := $00;
       w := ROM[i].crom_addr div crom_mask;
-      s := inttostr (i) + ': begin MASK <= 6''b' + inttobin (mask, 6) + '; IX <= 11''b' + inttobin (w, 11) + '; end // ' + ROM[i].name;
+      s := inttostr (i) + ': begin MASK <= 6''b' + inttobin (mask, 6) + '; IX <= 12''b' + inttobin (w, 12) + '; end // ' + ROM[i].name;
       writeln (f, s);
     end;
   end;
@@ -559,9 +560,9 @@ end;
 
 procedure GenROM;
 
-procedure SaveROM (fn: string; rom_1, rom_max, typ: cardinal);
+procedure SaveROM (fn: string; rom_1, rom_max, typ: int64);
 var
-  i, j, ix, fx, l1: cardinal;
+  i, j, ix, fx, l1: int64;
   in_arr: TARR;
   rom_arr: TARR;
   f: file of byte;
@@ -656,7 +657,7 @@ begin
   CreateDir ('ROM');
 
   SaveROM ('ROM\prom', prom_max div 3, prom_max, type_prom);
-  SaveROM ('ROM\crom', crom_max div 2, crom_max, type_crom);
+  SaveROM ('ROM\crom', crom_max div 2, crom_max + crom_extend, type_crom);
   SaveROM ('ROM\vrom', vrom_max, vrom_max, type_vrom);
   SaveROM ('ROM\srom', srom_max, srom_max, type_srom);
   SaveROM ('ROM\mrom', mrom_max, mrom_max, type_mrom);
@@ -667,11 +668,11 @@ end;
 
 procedure PatchMenu;
 var
-  i, j, ix, iy: integer;
+  i, j, ix, iy: int64;
   s: string;
   w1, w2: word;
   dw2: dword;
-  ix1, ix2, ix3, ix4: integer;
+  ix1, ix2, ix3, ix4: int64;
   gn: array [0..15] of byte;
   prom: TARR;
 
@@ -845,7 +846,7 @@ end;
 
 procedure GenMAME;
 var
-  i: integer;
+  i: int64;
   fn: string;
   f: textfile;
   crom, vroma, vromb: TARR;
@@ -853,7 +854,7 @@ var
   sha_c, sha_v, sha_va, sha_vb, sha_s, sha_m, sha_p: string;
   IdHashCRC32: TIdHashCRC32;
   IdHashSHA1: TIdHashSHA1;
-  size_c: integer;
+  size_c: int64;
 
 procedure SaveMAME (fn: string; arr: TARR);
 var
@@ -1005,6 +1006,7 @@ end;
 begin
   Writeln ('SNK MultiCart Compiler v1.01 (c) Vortex ''2023');
   sys := 'mvs';
+  crom_extend := 0;
   if (paramcount < 1) then
   begin
     WriteLn ('Usage: ', changefileext (extractfilename (paramstr (0)), ''), ' <filename> <command> .. <command> ..');
@@ -1020,6 +1022,7 @@ begin
   begin
     if (lowercase (paramstr (i)) = 'mvs') then sys := 'mvs';
     if (lowercase (paramstr (i)) = 'aes') then sys := 'aes';
+    if (lowercase (paramstr (i)) = 'c3g') then crom_extend := $40000000;
   end;
   Import (fn);
   Report;
