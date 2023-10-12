@@ -28,7 +28,7 @@ module cp1_top(
 // ..xxxxxxxxxxxxxxxxxxxxxxxxxx - P_ADDR (for 55LV100S)
 // .........xxxxxxxxxxxxxxxxxxx - M68K_ADDR
 // xxxxxxxxx................... - IX
-// ......xxx................... - P_BANK
+// ......xxx................... - P2_BANK
 
 	assign M68K_DATA = 16'bzzzzzzzzzzzzzzzz; // always read
 	assign MCU_DATA  =  8'bzzzzzzzz;         //
@@ -39,9 +39,11 @@ module cp1_top(
 
 	wire [1:0] CSEL = P_ADDR_ALL[27:26];
 
-	reg [2:0] P_BANK;
-
+	reg P2_MIRROR;
+	reg [2:0] P2_BANK;
+	reg [3:0] P2_BASE;
 	reg [2:0] BANKS;
+
 	reg [8:0] IX;
 
 	reg [7:0] GSEL;
@@ -63,30 +65,35 @@ module cp1_top(
 		endcase
 	end
 
-	assign P_ADDR_ALL = {IX + ((!nROMOE) ? 9'd0 : {6'd0, P_BANK} + 1'b1), M68K_ADDR};
+	assign P_ADDR_ALL = {IX + ((!nROMOE) ? 9'd0 : {5'd0, P2_BASE}), M68K_ADDR};
 
 	// P2 bank latch
 	always @(posedge nPORTWEL or negedge nRESET)
 	begin
 		if (!nRESET)
 		begin
-			P_BANK <= 3'd0;
-			GSEL   <= 8'd0;
+			P2_BANK <= 3'd0;
+			GSEL    <= 8'd0;
 		end
 		else
 		begin
-			P_BANK <= (M68K_DATA[2:0] <= BANKS) ? M68K_DATA[2:0] : 3'd0;
+			P2_BANK <= (M68K_DATA[2:0] <= BANKS) ? M68K_DATA[2:0] : 3'd0;
 			if (M68K_ADDR[19:1] == 19'b1100000011111110111) GSEL <= M68K_DATA[7:0]; // 0x2C0FEE
 		end
 	end
 
-	// GSEL
+	// GSEL/P_BASE
 	always @(*)
 	begin
 		case (GSEL)
 			`include "ix_p.inc"
-			default: begin BANKS <= 3'd0; IX <= 9'b000000000; end
+			default: begin BANKS <= 3'd0; IX <= 9'b000000000; P2_MIRROR <= 1'b1; end
 		endcase
+
+		if(P2_MIRROR)
+			P2_BASE <= 4'b0;
+		else
+			P2_BASE <= {1'b0, P2_BANK } + 1'b1;
 	end
 
 endmodule
