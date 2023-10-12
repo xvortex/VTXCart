@@ -283,7 +283,7 @@ procedure POP (fn: string; var pos: int64; mask: int64; var rom: TARR; typ: int6
 var
   f: file of byte;
   i, l, fs, ix: int64;
-  ff, dp: boolean;
+  ff: boolean;
 begin
   if (fileexists (fn)) then
   begin
@@ -502,6 +502,7 @@ var
   s: string;
   w: word;
   banks, mask, mode: int64;
+  p2_mirror: boolean;
 begin
   CreateDir ('Verilog');
 
@@ -530,6 +531,7 @@ begin
   rewrite (f);
   for i := 0 to length (ROM) - 1 do
   begin
+    p2_mirror := false;
     banks := (length (ROM[i].prom) div $100000) - 2;
     if (banks < 0) then banks := 0;
     if (banks > 7) then
@@ -537,8 +539,11 @@ begin
       WriteLog ('Error: up to 8 pbanks is supported');
       Halt;
     end;
+
+    if (length (ROM[i].prom) = $100000) then p2_mirror := true;
+
     w := ROM[i].prom_addr div prom_mask;
-    s := inttostr (i) + ': begin BANKS <= 3''d' + inttostr (banks) + '; IX <= 9''b' + inttobin (w, 9) + '; end // ' + ROM[i].name;
+    s := inttostr (i) + ': begin BANKS <= 3''d' + inttostr (banks) + '; IX <= 9''b' + inttobin (w, 9) + '; P2_MIRROR <= 1''b' + inttobin (Integer (p2_mirror), 1) + '; end // ' + ROM[i].name;
     writeln (f, s);
   end;
   closefile (f);
