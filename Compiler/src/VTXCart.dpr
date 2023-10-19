@@ -368,15 +368,15 @@ begin
   SetLength (ROM [ix].srom, 0);
   SetLength (ROM [ix].vrom, 0);
 
-  fn := '..\MEnu\' + sys + '\menu-p1.bin';
+  fn := '..\Menu\' + sys + '\menu-p1.bin';
   POP (fn, prom_pos, prom_mask, ROM [ix].prom, type_prom);
 
   ROM [ix].ngh := (ROM [ix].prom [$109] shl 8) + ROM [ix].prom [$108];
 
-  fn := '..\MEnu\' + sys + '\menu-s1.bin';
+  fn := '..\Menu\' + sys + '\menu-s1.bin';
   POP (fn, srom_pos, srom_mask, ROM [ix].srom, type_srom);
 
-  fn := '..\MEnu\' + sys + '\menu-m1.bin';
+  fn := '..\Menu\' + sys + '\menu-m1.bin';
   POP (fn, mrom_pos, mrom_mask, ROM [ix].mrom, type_mrom);
 
   //WriteLn ('Info: ', ROM [ix].mname + ' imported');
