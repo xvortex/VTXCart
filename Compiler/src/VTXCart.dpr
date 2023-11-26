@@ -373,6 +373,12 @@ begin
 
   ROM [ix].ngh := (ROM [ix].prom [$109] shl 8) + ROM [ix].prom [$108];
 
+  fn := '..\Menu\' + sys + '\menu-c1.bin';
+  POP (fn, crom_pos, crom_mask, ROM [ix].crom, type_crom);
+
+  fn := '..\Menu\' + sys + '\menu-v1.bin';
+  POP (fn, vrom_pos, vrom_mask, ROM [ix].vrom, type_vrom);
+
   fn := '..\Menu\' + sys + '\menu-s1.bin';
   POP (fn, srom_pos, srom_mask, ROM [ix].srom, type_srom);
 
