@@ -194,7 +194,7 @@ void doVeri(void)
   }
 }
 
-int main()
+int main(void)
 {
   /* MPU Configuration */
   MPU_Config();
@@ -386,10 +386,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   if (BSP_PB_GetState(BUTTON_BRD) == GPIO_PIN_SET)
     timBtnCnt[BUTTON_BRD]++;
   else {
-    if (timBtnCnt[BUTTON_BRD] >= 50) // BTN: 0.5 ñ.
+    if (timBtnCnt[BUTTON_BRD] >= 50) // BTN: 0.5 s.
       flag_button |= FLAG_BTN_BRD_LONG;
     else
-    if (timBtnCnt[BUTTON_BRD] >= 10) // BTN: 0.1 ñ.
+    if (timBtnCnt[BUTTON_BRD] >= 10) // BTN: 0.1 s.
       flag_button |= FLAG_BTN_BRD;
     timBtnCnt[BUTTON_BRD] = 0;
   }

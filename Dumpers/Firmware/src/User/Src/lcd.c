@@ -23,7 +23,7 @@ static int32_t lcd_recvdata(uint8_t *pdata, uint32_t length);
 ST7735_IO_t st7735_pIO = {
 	lcd_init,
 	NULL,
-	NULL,
+	0,
 	lcd_writereg,
 	lcd_readreg,
 	lcd_senddata,
@@ -292,29 +292,29 @@ void doLCD(void)
       video_attr[0] = video_attr[1] = 1;
       break;
     case MENU_TEST:
-      sprintf(video_mem[0], "E:%d", error);
+      sprintf(video_mem[0], "E:%ld", error);
       sprintf(video_mem[1], "T:%08lX", test);
       break;
     case MENU_DUMP:
-      sprintf(video_mem[0], "D:%02d%% E:%d", address / (get_end_address() / 100), error);
+      sprintf(video_mem[0], "D:%02ld%% E:%ld", address / (get_end_address() / 100), error);
       sprintf(video_mem[1], "A:%08lX", address);
       break;
     case MENU_PROG:
-      sprintf(video_mem[0], "P:%02d%% E:%d", address / (get_end_address() / 100), error);
+      sprintf(video_mem[0], "P:%02ld%% E:%ld", address / (get_end_address() / 100), error);
       sprintf(video_mem[1], "A:%08lX", address);
       break;
     case MENU_VERI:
-      sprintf(video_mem[0], "V:%02d%% E:%d", address / (get_end_address() / 100), error);
+      sprintf(video_mem[0], "V:%02ld%% E:%ld", address / (get_end_address() / 100), error);
       sprintf(video_mem[1], "A:%08lX", address);
       break;
     case MENU_DONE:
       sprintf(video_mem[0], "DONE");
-      sprintf(video_mem[1], "%d", error);
+      sprintf(video_mem[1], "%ld", error);
       video_attr[0] = video_attr[1] = 1;
       break;
     case MENU_ERROR:
       sprintf(video_mem[0], "ERROR");
-      sprintf(video_mem[1], "%d", error);
+      sprintf(video_mem[1], "%ld", error);
       video_attr[0] = video_attr[1] = 1;
       break;
     default:

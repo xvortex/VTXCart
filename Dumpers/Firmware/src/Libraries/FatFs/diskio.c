@@ -10,6 +10,7 @@
 #include "ff.h"			/* Obtains integer types */
 #include "diskio.h"		/* Declarations of disk functions */
 #include "ff_gen_drv.h"
+#include "main.h"
 
 extern Disk_drvTypeDef disk;
 
@@ -104,7 +105,7 @@ DRESULT disk_ioctl (
   * @param  None
   * @retval Time in DWORD
   */
-__weak DWORD get_fattime (void)
+__WEAK DWORD get_fattime (void)
 {
 	return 0;
 }
